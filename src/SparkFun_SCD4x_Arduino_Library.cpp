@@ -1218,3 +1218,27 @@ uint8_t SCD4x::computeCRC8(uint8_t data[], uint8_t len)
 
   return crc; //No output reflection
 }
+
+int16_t scd4x_power_down() {
+    Wire.beginTransmission(SCD4x_ADDRESS);
+    Wire.write(0x36);
+    Wire.write(0xE0);
+    int error = Wire.endTransmission();
+
+    if (error) {
+        return error;
+    }
+
+    delayMicroseconds(1000);  // Sleep for 1000 microseconds
+    return (true);
+}
+
+int16_t scd4x_wake_up() {
+    Wire.beginTransmission(SCD4x_ADDRESS);
+    Wire.write(0x36);
+    Wire.write(0xF6);
+    (void)Wire.endTransmission();  // Ignore the error as per the original function
+
+    delay(20);  // Sleep for 20 milliseconds
+    return (true);
+}
