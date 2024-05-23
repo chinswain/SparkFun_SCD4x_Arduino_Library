@@ -189,6 +189,9 @@ public:
   scd4x_sensor_type_e getSensorType(void); // Get the sensor type stored in the struct.
   void setSensorType(scd4x_sensor_type_e sensorType); // Set the sensor type for the device.
 
+  bool scd4x_power_down(void);
+  uint8_t scd4x_wake_up(void);
+
 private:
   //Variables
 #ifdef USE_TEENSY3_I2C_LIB
