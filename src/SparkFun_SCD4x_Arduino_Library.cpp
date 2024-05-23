@@ -1219,7 +1219,7 @@ uint8_t SCD4x::computeCRC8(uint8_t data[], uint8_t len)
   return crc; //No output reflection
 }
 
-int16_t scd4x_power_down() {
+bool scd4x_power_down() {
     Wire.beginTransmission(SCD4x_ADDRESS);
     Wire.write(0x36);
     Wire.write(0xE0);
